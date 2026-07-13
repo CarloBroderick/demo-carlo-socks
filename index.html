@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Almond &amp; the Algorithm — data centers, AI &amp; water</title>
+<meta name="description" content="A small gallery of interactive figures on the water, energy, and carbon footprint of data centers and AI — with California almonds as a water yardstick." />
+<style>
+  :root {
+    --almond:      #d9b48f;   /* almond skin        */
+    --almond-deep: #a6795b;   /* toasted almond     */
+    --shell:       #5c4033;   /* dark shell         */
+    --cream:       #fbf6ec;   /* blanched cream     */
+    --cream-2:     #f3e7d3;
+    --orchard:     #6f8f3f;   /* orchard green      */
+    --purple:      #7048e8;   /* data center / AI   */
+    --green:       #2f9e44;   /* comparators        */
+    --red:         #e03131;   /* emphasis           */
+    --teal:        #1098ad;   /* water              */
+    --ink:         #3a2f28;
+    --muted:       #8a7a6d;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 500px at 80% -10%, #fff8ec 0%, rgba(255,248,236,0) 60%),
+      linear-gradient(160deg, var(--cream) 0%, var(--cream-2) 100%);
+    background-attachment: fixed;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px 80px; }
+
+  /* ---------- Header ---------- */
+  header.hero {
+    text-align: center;
+    padding: 68px 22px 44px;
+    position: relative;
+  }
+  .almond-mark { width: 84px; height: 84px; margin: 0 auto 14px; display: block; filter: drop-shadow(0 6px 10px rgba(92,64,51,.25)); }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 5vw, 52px);
+    line-height: 1.05;
+    margin: 0 0 10px;
+    color: var(--shell);
+    letter-spacing: -0.5px;
+  }
+  h1 .amp { color: var(--almond-deep); font-style: italic; }
+  .tagline {
+    max-width: 640px; margin: 0 auto;
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--muted);
+  }
+  .tagline strong { color: var(--orchard); font-weight: 600; }
+
+  /* ---------- Section titles ---------- */
+  .section-title {
+    display: flex; align-items: center; gap: 12px;
+    margin: 48px 0 18px;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: var(--shell);
+  }
+  .section-title::after {
+    content: ""; flex: 1 1 auto; height: 1px;
+    background: linear-gradient(90deg, var(--almond) 0%, rgba(217,180,143,0) 100%);
+  }
+  .section-title .dot { font-size: 20px; }
+
+  /* ---------- Card grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  a.card {
+    display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    background: #fffdf8;
+    border: 1px solid #ecdfca;
+    border-radius: 16px;
+    padding: 20px 20px 18px;
+    box-shadow: 0 1px 2px rgba(92,64,51,.06);
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  a.card::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+    background: var(--accent, var(--almond-deep));
+  }
+  a.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(92,64,51,.16);
+    border-color: var(--accent, var(--almond-deep));
+  }
+  .card .icon { font-size: 26px; margin-bottom: 8px; }
+  .badge {
+    align-self: flex-start;
+    font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: #fff; background: var(--accent, var(--almond-deep));
+    padding: 3px 9px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 17px; color: var(--shell); }
+  .card p { margin: 0; font-size: 14px; color: var(--muted); }
+  .card .go {
+    margin-top: 14px; font-size: 13px; font-weight: 600;
+    color: var(--accent, var(--almond-deep));
+  }
+  .card .go::after { content: " →"; transition: margin-left .16s ease; }
+  a.card:hover .go::after { margin-left: 4px; }
+
+  /* accent helpers */
+  .a-energy { --accent: var(--purple); }
+  .a-water  { --accent: var(--teal); }
+  .a-carbon { --accent: var(--red); }
+  .a-almond { --accent: var(--orchard); }
+  .a-bonus  { --accent: var(--muted); }
+
+  .a-almond { background: linear-gradient(180deg, #fffdf8 0%, #fbf1de 100%); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center; margin-top: 56px; padding-top: 24px;
+    border-top: 1px dashed #e0cdae;
+    font-size: 13px; color: var(--muted);
+  }
+  footer a { color: var(--almond-deep); }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <!-- little almond mark -->
+    <svg class="almond-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <linearGradient id="ag" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e9c9a3"/>
+          <stop offset="1" stop-color="#a6795b"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 6 C74 26 90 52 74 82 C64 96 36 96 26 82 C10 52 26 26 50 6 Z" fill="url(#ag)" stroke="#5c4033" stroke-width="2.5"/>
+      <path d="M50 16 C50 40 50 66 50 86" fill="none" stroke="#5c4033" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </svg>
+    <h1>The Almond <span class="amp">&amp;</span> the Algorithm</h1>
+    <p class="tagline">
+      A small gallery of interactive figures on the <strong>water, energy &amp; carbon</strong>
+      footprint of data centers and AI — with California almonds as a familiar yardstick.
+      Tap any card to open the full interactive chart.
+    </p>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ENERGY -->
+    <div class="section-title"><span class="dot">⚡</span> Energy</div>
+    <div class="grid">
+      <a class="card a-energy" href="fig1_us_dc_electricity.html">
+        <span class="badge">Energy</span>
+        <div class="icon">🔌</div>
+        <h3>U.S. data-center electricity</h3>
+        <p>Flat at ~60 TWh, then a jump to 176 TWh by 2023 — and possibly 580 by 2028.</p>
+        <span class="go">Open chart</span>
+      </a>
+      <a class="card a-energy" href="fig2_server_ai_vs_conv.html">
+        <span class="badge">Energy</span>
+        <div class="icon">🖥️</div>
+        <h3>AI vs. conventional servers</h3>
+        <p>AI servers went from a rounding error to ~40% of server energy in six years.</p>
+        <span class="go">Open chart</span>
+      </a>
+      <a class="card a-energy" href="fig5_pue_wue_efficiency.html">
+        <span class="badge">Efficiency</span>
+        <div class="icon">🌡️</div>
+        <h3>Two dials: PUE &amp; WUE</h3>
+        <p>Fleet-average efficiency vs. best-in-class hyperscale — power and water.</p>
+        <span class="go">Open chart</span>
+      </a>
+    </div>
+
+    <!-- WATER -->
+    <div class="section-title"><span class="dot">💧</span> Water</div>
+    <div class="grid">
+      <a class="card a-water" href="fig3_water_context.html">
+        <span class="badge">Water</span>
+        <div class="icon">🚰</div>
+        <h3>Data-center water in context</h3>
+        <p>Next to beef cattle, power plants, and the whole U.S. blue-water footprint.</p>
+        <span class="go">Open chart</span>
+      </a>
+    </div>
+
+    <!-- CARBON -->
+    <div class="section-title"><span class="dot">🏭</span> Carbon</div>
+    <div class="grid">
+      <a class="card a-carbon" href="fig4_carbon_context.html">
+        <span class="badge">Carbon</span>
+        <div class="icon">💨</div>
+        <h3>Emissions yardsticks</h3>
+        <p>Data-center CO₂ set beside aviation, transportation, and Bitcoin.</p>
+        <span class="go">Open chart</span>
+      </a>
+    </div>
+
+    <!-- ALMONDS -->
+    <div class="section-title"><span class="dot">🌰</span> Almond comparisons</div>
+    <div class="grid">
+      <a class="card a-almond" href="fig6_almond_water_per_unit.html">
+        <span class="badge">Almond · Water</span>
+        <div class="icon">💧</div>
+        <h3>Water per almond, per query, per kWh</h3>
+        <p>One almond drinks ~12 L — more than an AI chat session or a kilowatt-hour.</p>
+        <span class="go">Open chart</span>
+      </a>
+      <a class="card a-almond" href="fig7_almond_vs_dc_annual_water.html">
+        <span class="badge">Almond · Water</span>
+        <div class="icon">🌾</div>
+        <h3>Almonds vs. data centers, per year</h3>
+        <p>California almonds use ~90× more water a year than U.S. data centers do directly.</p>
+        <span class="go">Open chart</span>
+      </a>
+      <a class="card a-almond" href="fig8_almond_context.html">
+        <span class="badge">Almond · Water</span>
+        <div class="icon">🌳</div>
+        <h3>Data-center water, as orchard acres</h3>
+        <p>Data-center water redrawn as equivalent acres of California almond orchard.</p>
+        <span class="go">Open chart</span>
+      </a>
+    </div>
+
+    <!-- BONUS -->
+    <div class="section-title"><span class="dot">🗺️</span> Bonus</div>
+    <div class="grid">
+      <a class="card a-bonus" href="ca_county_population_map.html">
+        <span class="badge">Map</span>
+        <div class="icon">📍</div>
+        <h3>California population, by county</h3>
+        <p>An interactive choropleth of the state, county by county.</p>
+        <span class="go">Open map</span>
+      </a>
+    </div>
+
+    <footer>
+      Interactive figures built with Plotly · almonds for scale 🌰 ·
+      hosted on <a href="https://carlobroderick.github.io/demo-carlo-socks/">GitHub Pages</a>.
+    </footer>
+
+  </div>
+</body>
+</html>
