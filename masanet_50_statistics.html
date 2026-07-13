@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Masanet 2024–2026: 50 Headline Statistics on Data-Center Energy, Carbon, and Water</title>
+<meta name="description" content="Fifty headline statistics from Masanet's LBNL 2024 report and Lei/Masanet 2025 water-use paper — organized by section for quick scanning." />
+<style>
+  :root {
+    --almond:      #d9b48f;
+    --almond-deep: #a6795b;
+    --shell:       #5c4033;
+    --cream:       #fbf6ec;
+    --cream-2:     #f3e7d3;
+    --orchard:     #6f8f3f;
+    --purple:      #7048e8;
+    --green:       #2f9e44;
+    --red:         #e03131;
+    --teal:        #1098ad;
+    --ink:         #3a2f28;
+    --muted:       #8a7a6d;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(900px 400px at 10% -5%, #fff8ec 0%, rgba(255,248,236,0) 60%),
+      linear-gradient(160deg, var(--cream) 0%, var(--cream-2) 100%);
+    background-attachment: fixed;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(251,246,236,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #ecdfca;
+    padding: 12px 22px;
+  }
+  .topnav a {
+    text-decoration: none;
+    font-size: 14px; font-weight: 600;
+    color: var(--almond-deep);
+  }
+  .topnav a:hover { color: var(--purple); }
+
+  .article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 22px 80px;
+  }
+
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(24px, 4.5vw, 36px);
+    line-height: 1.15;
+    color: var(--shell);
+    margin: 0 0 20px;
+    letter-spacing: -0.3px;
+  }
+
+  .source-note {
+    font-size: 15px;
+    color: var(--muted);
+    border-left: 4px solid var(--purple);
+    padding-left: 18px;
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    color: var(--shell);
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2 .sec-icon { font-size: 22px; }
+
+  .stats { display: flex; flex-direction: column; gap: 12px; }
+
+  .stat {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #fffdf8;
+    border: 1px solid #ecdfca;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 2px rgba(92,64,51,.05);
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .stat:hover {
+    border-color: var(--stat-accent, var(--almond));
+    box-shadow: 0 4px 12px rgba(92,64,51,.1);
+  }
+
+  .stat-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--stat-accent, var(--purple));
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 50%;
+    margin-top: 2px;
+  }
+
+  .stat-body { flex: 1; min-width: 0; }
+  .stat-body p { margin: 0; font-size: 15px; }
+  .stat-body strong { color: var(--shell); }
+
+  .sec-energy .stat { --stat-accent: var(--purple); }
+  .sec-ai     .stat { --stat-accent: var(--purple); }
+  .sec-struct .stat { --stat-accent: var(--almond-deep); }
+  .sec-eff    .stat { --stat-accent: var(--teal); }
+  .sec-direct .stat { --stat-accent: var(--teal); }
+  .sec-indir  .stat { --stat-accent: var(--red); }
+  .sec-work   .stat { --stat-accent: var(--green); }
+  .sec-store  .stat { --stat-accent: var(--orchard); }
+  .sec-frame  .stat { --stat-accent: var(--almond-deep); }
+
+  .stat-quote {
+    background: linear-gradient(135deg, #fffdf8 0%, #f5ebda 100%);
+    border-left: 5px solid var(--almond-deep);
+  }
+  .stat-quote .stat-num { background: var(--almond-deep); }
+
+  .sources {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 2px dashed #e0cdae;
+  }
+  .sources h2 {
+    font-size: 20px;
+    margin-top: 0;
+    display: block;
+  }
+  .sources ul {
+    margin: 0 0 24px;
+    padding-left: 1.3em;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .sources li { margin-bottom: 10px; }
+  .sources a { color: var(--almond-deep); }
+
+  .refs ol {
+    margin: 0;
+    padding-left: 1.4em;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .refs li { margin-bottom: 8px; }
+  .refs li::marker { color: var(--purple); font-weight: 600; }
+
+  footer {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer a { color: var(--almond-deep); }
+
+  @media (max-width: 600px) {
+    .stat { padding: 12px 14px; gap: 12px; }
+    .stat-num { width: 32px; height: 32px; font-size: 13px; }
+    .stat-body p { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html">← Back to gallery</a>
+</nav>
+
+<article class="article">
+
+  <h1>Masanet 2024–2026: 50 Headline Statistics on Data-Center Energy, Carbon, and Water</h1>
+
+  <p class="source-note">Sourced from Eric Masanet's most recent co-authored work: the LBNL <em>2024 United States Data Center Energy Usage Report</em> (Shehabi, Smith, Hubbard, Newkirk, Lei, Siddik, Holecek, Koomey, <strong>Masanet</strong>, Sartor, LBNL, Dec 2024) and Lei, Lu, Shehabi &amp; <strong>Masanet</strong> (2025), "The water use of data center workloads," <em>Resources, Conservation and Recycling</em> 219, 108310. Where useful, direct-quoted commentary from Masanet's 2025 Bren School interview is included. Numbers below are all cited to the sentence that states them.</p>
+
+  <section class="sec-energy">
+    <h2><span class="sec-icon">⚡</span> U.S. data center electricity — historical and near-term totals</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">1</span><div class="stat-body"><p>U.S. data center annual energy use stayed flat at <strong>~60 TWh from 2014–2016</strong>, continuing a minimal-growth trend that had held since roughly 2010 [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">2</span><div class="stat-body"><p>By <strong>2018 U.S. data centers consumed ~76 TWh</strong>, or 1.9% of total U.S. electricity, with the uptick starting in 2017 as GPU-accelerated AI servers took a meaningful share of the stock [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">3</span><div class="stat-body"><p><strong>In 2023, U.S. data centers reached 176 TWh, 4.4% of total U.S. electricity consumption</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">4</span><div class="stat-body"><p>Sector-wide electricity use grew at a <strong>compound annual rate of ~7% (2014–2018), accelerating to 18% (2018–2023)</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">5</span><div class="stat-body"><p>The report's 2028 scenarios span <strong>~325–580 TWh of annual data-center electricity use</strong> (low/high) [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">6</span><div class="stat-body"><p>That translates to a <strong>74–132 GW total power demand for data centers by 2028</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">7</span><div class="stat-body"><p>The 2028 range is <strong>6.7%–12.0% of total forecast U.S. electricity consumption</strong> — up from ~4% today [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">8</span><div class="stat-body"><p>For scale: the 2023 176 TWh is comparable to the electricity used by <strong>approximately 6.7 million average U.S. households</strong> [^1].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-ai">
+    <h2><span class="sec-icon">🖥️</span> AI servers as the dominant driver</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">9</span><div class="stat-body"><p>Between 2014 and 2023, <strong>total annual server electricity use more than tripled</strong>, from roughly 30 TWh to nearly 100 TWh (with AI servers explaining most of the growth after 2017) [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">10</span><div class="stat-body"><p><strong>AI-accelerated (GPU) server energy grew from &lt;2 TWh in 2017 to &gt;40 TWh in 2023</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">11</span><div class="stat-body"><p>When the previous LBNL report was published in 2016, <strong>AI servers were only ~2% of total server energy</strong> — a share that has since exploded [^2].</p></div></div>
+      <div class="stat"><span class="stat-num">12</span><div class="stat-body"><p>Masanet estimates <strong>AI servers use up to 10× the power of a standard server</strong>, and companies are deploying them at unprecedented scale [^3].</p></div></div>
+      <div class="stat"><span class="stat-num">13</span><div class="stat-body"><p>Larger-scale AI configurations are already in the pipeline: NVIDIA's <strong>72-GPU rack-scale GB200</strong> has been announced, with expected power draw scaling near-linearly from 8-GPU machines [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">14</span><div class="stat-body"><p>Empirical benchmarking showed <strong>8×H100 GPU nodes averaged 74% of manufacturer-rated TDP</strong> across single- and multi-node AI training workloads [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">15</span><div class="stat-body"><p>For 2024–2028, the report <strong>varies AI-server operational power between 60% and 80% of rated power</strong> to reflect future operating uncertainty [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">16</span><div class="stat-body"><p>AI-server <strong>idle power is assumed at ~20% of rated maximum</strong>, based on measured 8-GPU H100 nodes drawing ~18% of manufacturer max at idle [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">17</span><div class="stat-body"><p><strong>In 2023, inference accounted for nearly 60% of AI server energy</strong> — but by 2028, training is projected to overtake it, consuming 50–53% of AI-server energy as more high-TDP GPUs are allocated to training runs [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">18</span><div class="stat-body"><p>New AI campuses are being built with individual <strong>power capacities up to ~1 gigawatt — enough to power all homes in Philadelphia</strong> [^2].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-struct">
+    <h2><span class="sec-icon">🏗️</span> Structural shifts: where the servers live</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">19</span><div class="stat-body"><p>In 2014, <strong>internal (enterprise) data centers housed 24% of servers</strong>; by 2020, hyperscale+colocation combined jumped from 20% (2014) to 57% (2020) of servers [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">20</span><div class="stat-body"><p><strong>In 2014, over 60% of server energy consumption was in internal data centers; by 2023 that share fell to nearly 10%</strong>, with hyperscale and colocation together accounting for almost 80% [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">21</span><div class="stat-body"><p><strong>By 2028, internal DCs' share of server energy falls below 2%, and hyperscale+colo exceed 90%</strong>, primarily driven by AI workloads [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">22</span><div class="stat-body"><p><strong>Amazon, Microsoft, and Google collectively own more than half</strong> of hyperscale data centers [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">23</span><div class="stat-body"><p><strong>Virginia hosts the highest data-center electricity demand in the U.S., followed by California and Texas</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">24</span><div class="stat-body"><p>In Northern Virginia, DC concentration has pushed utilities to <strong>keep fossil-fuel plants online</strong> to meet demand [^3].</p></div></div>
+      <div class="stat"><span class="stat-num">25</span><div class="stat-body"><p>Masanet notes <strong>renewable-energy deployment is not scaling fast enough</strong> to match AI growth; nuclear and geothermal are being explored but are "not yet widely available" [^3].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-eff">
+    <h2><span class="sec-icon">🌡️</span> Efficiency: PUE and site WUE</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">26</span><div class="stat-body"><p><strong>PUE</strong> = total data-center electricity ÷ IT-equipment electricity (dimensionless kWh/kWh); <strong>WUE</strong> = total water ÷ IT-equipment electricity, reported in <strong>liters per kWh</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">27</span><div class="stat-body"><p>The report ran <strong>over 1 million PUE/WUE simulations</strong> across cooling types, climates, and operating regimes [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">28</span><div class="stat-body"><p><strong>Annual average PUE fell from ~1.6 in 2014 to ~1.4 in 2023</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">29</span><div class="stat-body"><p><strong>By 2028, average PUE is projected to fall to 1.15–1.35</strong>, driven by the continued shift to hyperscale/colo [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">30</span><div class="stat-body"><p><strong>Average site WUE stayed just above 0.36 L/kWh through 2023</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">31</span><div class="stat-body"><p><strong>Post-2023, average site WUE actually rises to 0.45–0.48 L/kWh</strong> as more evaporative and adiabatic cooling is deployed to compensate for higher heat loads [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">32</span><div class="stat-body"><p>Best-in-class hyperscale facilities self-report <strong>WUE as low as 0.1–0.3 L/kWh</strong> for adiabatic-cooling configurations — better than the modeled aggregate [^1].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-direct">
+    <h2><span class="sec-icon">💧</span> Direct water consumption</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">33</span><div class="stat-body"><p><strong>U.S. data centers directly consumed ~21.2 billion liters of water in 2014</strong>, of which 64% was in internal data centers [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">34</span><div class="stat-body"><p>Lei/Masanet (2025) update that figure: <strong>U.S. data centers directly consumed ~66 billion liters in 2023</strong>, a threefold rise in a decade [^4].</p></div></div>
+      <div class="stat"><span class="stat-num">35</span><div class="stat-body"><p>The LBNL 2024 report projects <strong>U.S. data centers will consume 60–124 billion liters of direct water by 2028</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">36</span><div class="stat-body"><p>Direct water use covers <strong>space humidification, direct adiabatic cooling, and heat rejection in cooling towers</strong> — evaporation, windage loss, and blowdown/draw-off water [^4].</p></div></div>
+      <div class="stat"><span class="stat-num">37</span><div class="stat-body"><p>As a local-impact example, <strong>Google's data centers in The Dalles, Oregon consumed 355 million gallons of water in 2021 — 29% of the city's total water consumption</strong> during regional drought [^4].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-indir">
+    <h2><span class="sec-icon">🏭</span> Indirect (electricity-embedded) water and emissions</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">38</span><div class="stat-body"><p><strong>Total indirect water footprint of U.S. data centers is ~800 billion liters</strong> — more than 10× direct water use — attributable to electricity-generation water consumption at the regional grid mix [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">39</span><div class="stat-body"><p>Associated <strong>2023 GHG emissions from data-center electricity are ~61 billion kg CO₂-equivalent</strong> at the current grid mix [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">40</span><div class="stat-body"><p>Combustion of fossil fuels (coal, gas, petroleum) accounts for <strong>&gt;99% of GHG emissions from electricity generation</strong> [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">41</span><div class="stat-body"><p><strong>1 kWh of thermoelectric generation embeds 0.18–2.0 L of water</strong>, an order-of-magnitude range depending on generator technology [^4].</p></div></div>
+      <div class="stat"><span class="stat-num">42</span><div class="stat-body"><p><strong>1 kWh of hydropower embeds 0.67–1,194 L</strong> — the reservoir-evaporation extremes are what make indirect water use so location-dependent [^4].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-work">
+    <h2><span class="sec-icon">📊</span> Workload-level water use (Lei/Masanet 2025)</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">43</span><div class="stat-body"><p>Workload-level data-center water use <strong>varies by more than 10,000× across configurations</strong>, driven by ~1,000× differences in water per kWh of grid electricity and ~10× in server workload efficiency [^4].</p></div></div>
+      <div class="stat"><span class="stat-num">44</span><div class="stat-body"><p>Determinants ranked: <strong>server efficiency → grid water factors → server utilization → cooling system type → infrastructure efficiency → climate zone → inactive-server percentage → refresh cycle</strong> [^4].</p></div></div>
+      <div class="stat"><span class="stat-num">45</span><div class="stat-body"><p>The paper introduces a <strong>workload-normalized metric (liters per ssj_ops)</strong> using the SPECpower_ssj 2008 benchmark, allowing fair cross-DC comparisons that WUE-site and WUE-source cannot support [^4].</p></div></div>
+      <div class="stat"><span class="stat-num">46</span><div class="stat-body"><p>The framework is <strong>explicitly extensible to AI workloads via MLPerf</strong> — making it the methodological bridge from Masanet's earlier PUE/WUE work to the GenAI era [^4].</p></div></div>
+      <div class="stat"><span class="stat-num">47</span><div class="stat-body"><p>There is <strong>"no silver bullet"</strong> for water reduction — optimal outcomes require tailored combinations of renewable-electricity sourcing, high-efficiency servers, high utilization via virtualization, and site-appropriate cooling [^4].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-store">
+    <h2><span class="sec-icon">💾</span> Storage and networking (often overlooked)</h2>
+    <div class="stats">
+      <div class="stat"><span class="stat-num">48</span><div class="stat-body"><p><strong>Storage electricity use</strong> grows from 7 TWh in 2014 to 16 TWh in 2023 to 22 TWh by 2028; the flash share climbs from 6% to 25% to 50% over the same period, while HDD electricity use peaks at 12.3 TWh in 2023 and then declines [^1].</p></div></div>
+      <div class="stat"><span class="stat-num">49</span><div class="stat-body"><p><strong>Network equipment electricity reaches ~23 TWh by 2028</strong>, with <strong>InfiniBand switches jumping from just under 10% (2023) to 45% (2028)</strong> of total network electricity — an AI-training-cluster fingerprint [^1].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec-frame">
+    <h2><span class="sec-icon">🎯</span> Framing statistic</h2>
+    <div class="stats">
+      <div class="stat stat-quote"><span class="stat-num">50</span><div class="stat-body"><p>Masanet's own framing of the AI era: <strong>"Even with efficiency gains, AI's energy footprint is still expected to grow. The key is ensuring that this growth aligns with sustainable energy deployment rather than exacerbating fossil-fuel dependence"</strong> [^3].</p></div></div>
+    </div>
+  </section>
+
+  <section class="sources">
+    <h2>Source notes</h2>
+    <ul>
+      <li><strong>Shehabi, Smith, Hubbard, Newkirk, Lei, Siddik, Holecek, Koomey, Masanet, Sartor (Dec 2024).</strong> <em>2024 United States Data Center Energy Usage Report.</em> LBNL-2001637, DOI <a href="https://dx.doi.org/10.71468/P1WC7Q">10.71468/P1WC7Q</a>. Congressionally mandated update to the 2016 LBNL report, covering 2014–2023 with scenarios to 2028. Masanet is a coauthor; the report is the current U.S. national baseline.</li>
+      <li><strong>Lei, Lu, Shehabi, Masanet (2025).</strong> "The water use of data center workloads: A review and assessment of key determinants." <em>Resources, Conservation and Recycling</em> 219, 108310. First workload-normalized DC water framework; extensible to MLPerf/AI workloads.</li>
+      <li><strong>Bren School interview (March 2025), "The AI Revolution's Energy Dilemma."</strong> Cited for Masanet's direct quotes and framing, not quantitative primary data.</li>
+      <li><strong>Reuters (Dec 20 2024)</strong> coverage of the LBNL release is cited only where it usefully paraphrases the report's headline scenarios.</li>
+    </ul>
+
+    <div class="refs">
+      <h2>Footnotes</h2>
+      <ol>
+        <li id="fn1">Farley. Lawrence Berkeley National Laboratory.</li>
+        <li id="fn2">Kearney, 2024. US data-center power use could nearly triple by 2028, DOE-backed report says | Reuters.</li>
+        <li id="fn3">The AI Revolution's Energy Dilemma | UC Santa Barbara - Bren School of Environmental Science &amp; Management.</li>
+        <li id="fn4">Full length article The water use of data center workloads: A review and assessment of key determinants.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    Part of <a href="index.html">The Almond &amp; the Algorithm</a> gallery 🌰
+  </footer>
+
+</article>
+</body>
+</html>

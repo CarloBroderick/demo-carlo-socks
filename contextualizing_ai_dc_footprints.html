@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contextualizing AI/Data-Center Footprints — Peer-Reviewed Comparators</title>
+<meta name="description" content="Peer-reviewed benchmarks that put Masanet's 2024–2026 data-center numbers on a common scale with U.S. electricity, water, agriculture, and cryptocurrency mining." />
+<style>
+  :root {
+    --almond:      #d9b48f;
+    --almond-deep: #a6795b;
+    --shell:       #5c4033;
+    --cream:       #fbf6ec;
+    --cream-2:     #f3e7d3;
+    --orchard:     #6f8f3f;
+    --purple:      #7048e8;
+    --green:       #2f9e44;
+    --red:         #e03131;
+    --teal:        #1098ad;
+    --ink:         #3a2f28;
+    --muted:       #8a7a6d;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(900px 400px at 90% -5%, #fff8ec 0%, rgba(255,248,236,0) 60%),
+      linear-gradient(160deg, var(--cream) 0%, var(--cream-2) 100%);
+    background-attachment: fixed;
+    line-height: 1.65;
+    font-size: 17px;
+  }
+
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(251,246,236,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #ecdfca;
+    padding: 12px 22px;
+  }
+  .topnav a {
+    text-decoration: none;
+    font-size: 14px; font-weight: 600;
+    color: var(--almond-deep);
+  }
+  .topnav a:hover { color: var(--purple); }
+
+  .article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 22px 80px;
+  }
+
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(26px, 4.5vw, 38px);
+    line-height: 1.15;
+    color: var(--shell);
+    margin: 0 0 20px;
+    letter-spacing: -0.3px;
+  }
+
+  .intro {
+    font-size: 17px;
+    color: var(--muted);
+    border-left: 4px solid var(--almond);
+    padding-left: 18px;
+    margin-bottom: 36px;
+  }
+  .intro em { font-style: italic; }
+
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    color: var(--shell);
+    margin: 44px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ecdfca;
+  }
+  h2.electricity { border-bottom-color: var(--purple); }
+  h2.carbon     { border-bottom-color: var(--red); }
+  h2.water      { border-bottom-color: var(--teal); }
+  h2.local      { border-bottom-color: var(--teal); }
+  h2.framing    { border-bottom-color: var(--almond-deep); }
+  h2.almond     { border-bottom-color: var(--orchard); }
+
+  h3 {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: var(--almond-deep);
+    margin: 28px 0 12px;
+  }
+
+  p { margin: 0 0 14px; }
+
+  ul { margin: 0 0 16px; padding-left: 1.4em; }
+  li { margin-bottom: 10px; }
+  li::marker { color: var(--almond-deep); }
+
+  strong { color: var(--shell); font-weight: 600; }
+  em { font-style: italic; }
+
+  .takeaway {
+    background: linear-gradient(135deg, #fffdf8 0%, #f5ebda 100%);
+    border: 1px solid #ecdfca;
+    border-left: 5px solid var(--orchard);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin: 32px 0;
+    font-size: 16px;
+  }
+  .takeaway strong { color: var(--orchard); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 28px;
+    font-size: 15px;
+    background: #fffdf8;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(92,64,51,.08);
+  }
+  thead th {
+    background: var(--orchard);
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 13px;
+    letter-spacing: .02em;
+  }
+  tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid #ecdfca;
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: rgba(111,143,63,.06); }
+  tbody tr:hover { background: rgba(111,143,63,.12); }
+  td.num { font-weight: 600; color: var(--purple); white-space: nowrap; }
+
+  .refs {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 2px dashed #e0cdae;
+  }
+  .refs h2 {
+    font-size: 20px;
+    border-bottom: none;
+    margin-top: 0;
+  }
+  .refs ol {
+    margin: 0;
+    padding-left: 1.4em;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .refs li { margin-bottom: 8px; }
+  .refs li::marker { color: var(--almond-deep); font-weight: 600; }
+
+  footer {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer a { color: var(--almond-deep); }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    table { font-size: 13px; }
+    thead th, tbody td { padding: 9px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html">← Back to gallery</a>
+</nav>
+
+<article class="article">
+
+  <h1>Contextualizing AI/Data-Center Footprints: Peer-Reviewed Comparators</h1>
+
+  <p class="intro">These are peer-reviewed benchmarks (with a few USGS technical reports) that put Masanet's 2024–2026 data-center numbers on a common scale with the U.S. electric-power sector, U.S. water use, agriculture, and cryptocurrency mining. Journals cited include <em>Joule</em>, <em>Earth's Future</em>, <em>Environmental Research Letters</em>, <em>Journal of Industrial Ecology</em>, <em>Hydrology and Earth System Sciences</em>, <em>Energy Policy</em>, <em>Nature Scientific Data</em>, plus the USGS Circular / Scientific Investigations series (the canonical national baseline for U.S. water use).</p>
+
+  <h2 class="electricity">Electricity: what does "176 TWh, 4.4% of U.S. electricity" compare to?</h2>
+
+  <p>Masanet reports U.S. data centers at <strong>176 TWh in 2023</strong> rising to <strong>~325–580 TWh by 2028 (6.7–12% of U.S. electricity)</strong>. Comparators:</p>
+
+  <ul>
+    <li><strong>Bitcoin mining, global</strong>: annual electricity consumption estimated at <strong>45.8 TWh as of November 2018</strong> in Stoll et al.'s <em>Joule</em> paper — comparable to Jordan or Sri Lanka at the time [^1]. By 2020–2021 Chamanara et al. put the global Bitcoin network at <strong>173.42 TWh</strong>, i.e. roughly the entire 2023 U.S. data-center total was matched by Bitcoin alone [^2]. AI data centers and crypto mining are now in the same order of magnitude globally.</li>
+    <li><strong>U.S. agricultural irrigation pumping (2018)</strong>: <strong>37.5 TWh of electricity (0.94% of U.S. total), and 60.6 TWh of total energy</strong> to deliver 103 billion m³ of water [^3]. So 2023 data centers already used <strong>~5× more electricity than all U.S. on-farm irrigation combined</strong>.</li>
+    <li><strong>U.S. irrigation (2023 update)</strong>: 26.2 TWh — <strong>0.68% of national electricity</strong> and 0.57% of national CO₂e [^4]. Data centers at 4.4% of U.S. electricity in 2023 were roughly <strong>6–7× the national irrigation electricity share</strong>.</li>
+    <li><strong>Global cement + steel</strong>: SSP2 baseline projects sharply rising demand through mid-century, with CO₂ emissions from these two industries alone peaking in the coming decades before any climate policy [^5] — a useful reminder that AI is one of several 21st-century demand shocks on the grid, not the only one.</li>
+  </ul>
+
+  <h2 class="carbon">Carbon: contextualizing 61 Mt CO₂e from U.S. data centers (2023)</h2>
+
+  <ul>
+    <li><strong>U.S. transportation</strong> overtook the power sector as the largest single source of U.S. GHG emissions in the mid-2010s and is expected to remain dominant [^6]. Data-center emissions of 61 Mt CO₂e are roughly <strong>~3% of U.S. transportation-sector emissions</strong> (which run in the ~1,800–1,900 Mt range).</li>
+    <li><strong>Life-cycle carbon intensity of coal-fired electricity</strong>: a <em>Journal of Industrial Ecology</em> systematic harmonization of 53 LCAs reports <strong>median 1,001 g CO₂-eq/kWh (IQR 890–1,130; full range 675–1,689)</strong> [^7]. At current U.S. grid intensity (~370 g/kWh), Masanet's 176 TWh at the <em>coal</em> margin would emit ~176 Mt CO₂e — nearly 3× the reported figure, showing how sensitive the number is to marginal generation source. This is the quantitative anchor behind Masanet's warning that keeping coal/gas plants online for data centers materially changes the emissions arithmetic.</li>
+    <li><strong>Bitcoin comparator</strong>: 22.0–22.9 Mt CO₂ in 2018 (Stoll, <em>Joule</em>) [^1]; 85.89 Mt CO₂e in 2020–2021 (Chamanara) [^2]. U.S. data centers at 61 Mt sit between these two crypto snapshots.</li>
+  </ul>
+
+  <h2 class="water">Water: the two-order-of-magnitude gap between direct and indirect</h2>
+
+  <p>Masanet's headline numbers are <strong>~66 billion L direct + ~800 billion L indirect (electricity-embedded) in 2023</strong>. The USGS and peer-reviewed literature let us anchor these against the U.S. water system as a whole:</p>
+
+  <ul>
+    <li><strong>Total U.S. freshwater withdrawals, 2015 (USGS Circular)</strong>: <strong>322 billion gallons/day (~1,220 billion L/day, i.e. ~445 trillion L/yr)</strong> — a 9% decrease from 2010 [^8]. Data-center direct water (66 bn L/yr) is on the order of <strong>~0.015% of total U.S. freshwater withdrawal</strong>.</li>
+    <li><strong>Thermoelectric power's share of U.S. water</strong>: <strong>~41% of U.S. freshwater withdrawals but only ~3% of consumption</strong> (Meldrum et al., <em>ERL</em>) [^9]. This is exactly why Masanet's <em>indirect</em> (electricity-embedded) water footprint dominates the direct figure by &gt;10×: it inherits a share of the largest water-withdrawing sector in the country.</li>
+    <li><strong>Thermoelectric water use, 2015 (USGS SIR 2019-5103)</strong>: <strong>103 Bgal/d withdrawal and 2.7 Bgal/d consumption</strong> across 1,122 utility-scale plants — withdrawal down 20% and consumption down 21% since 2010, driven by coal retirements and the shift to natural-gas combined cycle [^10].</li>
+    <li><strong>Thermoelectric trend, 2008–2020 (USGS, <em>ES&amp;T</em> 2025)</strong>: CONUS thermoelectric withdrawals fell by 14,335 million L/day and consumption by 278 million L/day over the period [^11]. Data-center growth is landing on a <em>shrinking</em> baseline of power-sector water use — magnifying its relative visibility.</li>
+    <li><strong>Agricultural comparator</strong>: agriculture + livestock account for <strong>93% of the total U.S. blue water footprint</strong>; median U.S. consumptive water footprint is <strong>181,966 Mm³ (~182 trillion L)</strong>, or 589 m³ per capita [^12]. Data-center direct water (~66 bn L) is roughly <strong>0.04% of the national blue water footprint</strong>; even the ~800 bn L indirect figure is under 0.5%.</li>
+    <li><strong>Bitcoin water comparator</strong>: global Bitcoin mining water footprint was <strong>~1.65 km³ (1,650 billion L) in 2020–2021</strong> — more than the domestic water use of 300 million people in rural Sub-Saharan Africa [^2]. Bitcoin's water footprint alone is roughly <strong>2× Masanet's total U.S. data-center water (direct + indirect)</strong>, reflecting Bitcoin's heavier reliance on water-intensive grids.</li>
+  </ul>
+
+  <h2 class="local">Localized stress, not aggregate scarcity</h2>
+
+  <p>Masanet's Dalles-Oregon example (29% of a city's water) fits a pattern well-established in the peer-reviewed water literature:</p>
+
+  <ul>
+    <li>Watershed-scale analysis using the WaSSI model (Averyt et al., <em>ERL</em>) finds that although agriculture dominates U.S. water stress in aggregate, <strong>a single thermoelectric plant can stress water supplies at the watershed scale</strong> — cooling water demand shows up as isolated, punctuated stress rather than a uniform national signal [^13]. Concentrated hyperscale campuses (Virginia, Phoenix, The Dalles) reproduce this pattern for direct water use — the national totals look small, but the local hydrology can look catastrophic.</li>
+  </ul>
+
+  <h2 class="framing">Framing takeaway</h2>
+
+  <p>At the national level, U.S. data centers in 2023 are:</p>
+
+  <ul>
+    <li><strong>~4.4% of U.S. electricity</strong> — larger than all U.S. irrigation pumping combined, similar in scale to global Bitcoin mining, and small relative to transportation.</li>
+    <li><strong>~0.015% of U.S. freshwater withdrawal directly, ~0.2% including electricity-embedded water</strong> — a rounding error nationally, but locally comparable to municipal demand where campuses concentrate.</li>
+    <li><strong>~61 Mt CO₂e</strong> — small compared to U.S. transportation (~1,800 Mt) but highly sensitive to the marginal generation source (coal-margin intensity is ~1,000 g/kWh [^7], vs. ~370 g/kWh U.S. grid average).</li>
+  </ul>
+
+  <p>The 2028 scenarios (325–580 TWh, 60–124 bn L direct water) push data centers past irrigation and toward roughly the electricity footprint of a top-10 U.S. state — still smaller than transportation, but no longer a niche load.</p>
+
+  <h2 class="almond">California almonds: a tablespoon-of-almond-butter comparator</h2>
+
+  <p>California produces &gt;75% of global commercial almond supply, and the peer-reviewed literature converges on two headline water numbers for hulled kernel at the farm/processing gate:</p>
+
+  <ul>
+    <li><strong>Fulton et al. 2019 (<em>Ecological Indicators</em>), water-footprint method:</strong> average of <strong>10,240 liters per kilogram of almond kernels, or ~12 L per single almond kernel</strong>, with roughly 2× spatial variation across California [^14]. This is the total (blue + green) water footprint attributable to almonds, computed 2004–2015.</li>
+    <li><strong>Marvinney et al. 2021 (SPARCS-LCA, <em>J. Industrial Ecology</em>):</strong> 1 kg of hulled brown-skin almond kernel at post-harvest gate causes <strong>4,820 L of freshwater use</strong> (economic allocation; regional range 4,540–5,150 L/kg), 1.92 kg CO₂e, 50.9 MJ energy [^15]. The Marvinney number is lower than Fulton's because it uses an LCA freshwater-consumption boundary rather than the water-footprint total.</li>
+    <li><strong>Earlier baseline (Kendall et al. 2015, <em>J. Industrial Ecology</em>):</strong> 1 kg raw almonds = <strong>35 MJ energy and 1.6 kg CO₂e</strong> with nitrogen fertilizer and irrigation dominating both [^16].</li>
+  </ul>
+
+  <p>Almond butter is essentially ground almonds (~100% almonds by mass), so per-kernel water carries through nearly 1:1. A standard nutrition-label tablespoon of almond butter is ~16 g — about 13 almond kernels.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Serving of almond butter</th>
+        <th>Fulton 2019 footprint (10,240 L/kg)</th>
+        <th>Marvinney 2021 LCA freshwater (4,820 L/kg)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1 almond kernel (~1.2 g)</td>
+        <td class="num">~12 L</td>
+        <td class="num">~5.8 L</td>
+      </tr>
+      <tr>
+        <td>1 tablespoon (16 g, ~13 almonds)</td>
+        <td class="num"><strong>~164 L</strong></td>
+        <td class="num">~77 L</td>
+      </tr>
+      <tr>
+        <td>1 oz serving (28 g)</td>
+        <td class="num">~287 L</td>
+        <td class="num">~135 L</td>
+      </tr>
+      <tr>
+        <td>1 lb jar (454 g)</td>
+        <td class="num">~4,650 L</td>
+        <td class="num">~2,190 L</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Anchoring back to Masanet's data-center numbers</h3>
+
+  <p>Masanet reports <strong>~66 billion L of direct water use across all U.S. data centers in 2023</strong> and site WUE ~0.36 L/kWh. That means:</p>
+
+  <ul>
+    <li><strong>One tablespoon of almond butter ≈ ~164 L of embedded water (Fulton), which equals roughly 455 kWh of data-center IT electricity at 2023 site WUE.</strong> For scale, 455 kWh is roughly what a hyperscale 8×H100 AI training node (rated ~5.5 kW; Masanet's benchmarking shows typical operation at ~74% of rated TDP, i.e. ~4 kW) draws in about <strong>4–5 days</strong> of continuous operation.</li>
+    <li><strong>Total U.S. data-center direct water (66 bn L)</strong> ÷ 10,240 L/kg = <strong>~6.4 million kg of almonds' worth of water</strong>, or <strong>~400 million tablespoons of almond butter</strong>. Sounds huge — but it's less than <strong>1% of California's annual almond water footprint</strong> (~1.1 million tonnes of almonds × 10,240 L/kg ≈ <strong>11.3 trillion L</strong>, or ~170× total U.S. direct data-center water).</li>
+    <li>Even Masanet's <strong>indirect (electricity-embedded) water footprint of ~800 bn L</strong> is only about <strong>7% of the annual water footprint of the California almond crop alone</strong>.</li>
+  </ul>
+
+  <h3>Why almonds are the right comparator</h3>
+
+  <ul>
+    <li><strong>Same water-scarcity context:</strong> almond orchards and hyperscale data-center clusters are both concentrated in regions where local water is already stressed. Fulton et al. flag that almonds have the highest water footprint per unit weight among the major California crops they analyzed but also the highest nutritional density and economic value per unit weight — a benefits/impacts trade-off structurally similar to how Masanet frames AI compute [^14].</li>
+    <li><strong>Same national-vs-local asymmetry:</strong> Almond production water (~11 trillion L/yr in California) dwarfs U.S. data-center water at the national scale, yet a single data-center campus in a drought-stricken town (The Dalles, Phoenix) can locally match or exceed municipal demand — the same pattern as almonds vs. Central Valley groundwater basins.</li>
+    <li><strong>Same LCA lesson on direct vs. indirect:</strong> Winans et al. (2019, <em>Int. J. LCA</em>) found that in a 48 oz (1.42 L) bottle of almond milk, <strong>95% of the freshwater consumption (167 kg water out of 175 kg total) came from almond-orchard irrigation, not from processing or packaging</strong> [^17]. This exactly mirrors Masanet's finding that indirect (electricity-embedded) water dominates direct site water use for data centers — the biggest water impact happens upstream of the visible facility.</li>
+  </ul>
+
+  <div class="takeaway">
+    <strong>One-line takeaway:</strong> A single tablespoon of almond butter carries roughly 160 liters of embedded water — about the same volume of direct data-center water needed to run ~450 kWh of AI compute, and California's annual almond crop uses more water than every U.S. data center's direct <em>and</em> indirect water footprint combined.
+  </div>
+
+  <section class="refs">
+    <h2>References</h2>
+    <ol>
+      <li id="fn1">Stoll et al., 2019. The Carbon Footprint of Bitcoin. <em>Joule</em>.</li>
+      <li id="fn2">Chamanara &amp; Madani, 2023. The Hidden Environmental Cost of Cryptocurrency: How Bitcoin Mining Impacts Climate, Water and Land.</li>
+      <li id="fn3">Sowby &amp; Dicataldo, 2022. The Energy Footprint of U.S. Irrigation: A First Estimate from Open Data. <em>Energy Nexus</em>.</li>
+      <li id="fn4">Sowby &amp; Price, 2025. State-Level Electricity and Emissions Footprints of U.S. Irrigation. <em>Environmental Challenges</em>.</li>
+      <li id="fn5">Ruijven et al., 2016. Long-term model-based projections of energy use and CO₂ emissions from the global steel and cement industries. <em>Resources Conservation and Recycling</em>.</li>
+      <li id="fn6">Bleviss, 2020. Transportation is critical to reducing greenhouse gas emissions in the United States. <em>WIREs Energy and Environment</em>.</li>
+      <li id="fn7">Whitaker et al., 2012. Life Cycle Greenhouse Gas Emissions of Coal‐Fired Electricity Generation. <em>Journal of Industrial Ecology</em>.</li>
+      <li id="fn8">Maupin, 2018. Summary of estimated water use in the United States in 2015.</li>
+      <li id="fn9">Meldrum et al., 2013. Life Cycle Water Use for Electricity Generation: Implications of the Distribution of Collected Estimates.</li>
+      <li id="fn10">Harris &amp; Diehl, 2019. Withdrawal and consumption of water by thermoelectric power plants in the United States, 2015. Scientific Investigations Report.</li>
+      <li id="fn11">Skinner et al., 2025. Water Withdrawal and Consumption Trends for Thermoelectric-Power Plants in the Conterminous United States, 2008–2020. <em>ACS ES&amp;T Water</em>.</li>
+      <li id="fn12">Rushforth &amp; Ruddell, 2018. A spatially detailed blue water footprint of the United States economy. <em>Hydrology and Earth System Sciences</em>.</li>
+      <li id="fn13">Averyt et al., 2013. US thermoelectric power plant water withdrawals as percentage of US total water use.</li>
+      <li id="fn14">Fulton et al., 2019. Water-indexed benefits and impacts of California almonds. <em>Ecological Indicators</em>.</li>
+      <li id="fn15">Marvinney &amp; Kendall, 2021. A scalable and spatiotemporally resolved agricultural life cycle assessment of California almonds. <em>The International Journal of Life Cycle Assessment</em>.</li>
+      <li id="fn16">Kendall et al., 2015. Life Cycle–based Assessment of Energy Use and Greenhouse Gas Emissions in Almond Production, Part I: Analytical Framework and Baseline Results. <em>Journal of Industrial Ecology</em>.</li>
+      <li id="fn17">Winans et al., 2019. Life cycle assessment of California unsweetened almond milk. <em>The International Journal of Life Cycle Assessment</em>.</li>
+    </ol>
+  </section>
+
+  <footer>
+    Part of <a href="index.html">The Almond &amp; the Algorithm</a> gallery 🌰
+  </footer>
+
+</article>
+</body>
+</html>
